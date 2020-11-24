@@ -1,0 +1,10 @@
+{
+  "name": "pdf-lib_prueba",
+  "version": "1",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pdf-lib": "^1.12.0"
+  }
+}
