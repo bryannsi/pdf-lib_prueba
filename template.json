@@ -1,0 +1,54 @@
+{
+    "identificador": "1",
+    "nombre": "plantilla_factura_electronica",
+    "descripcion": "Plantilla para la creación del pdf de la factura electrónica",
+    "tipo": "plantilla",
+    "estructura": {
+      "datos": {
+        "emisor": {
+          "nombre": "emisor_nombre",
+          "identificacion": "emisor_identif",
+          "direccion": "emisor_direccion",
+          "telefono": "emisor_telefono",
+          "correo": "emisor_correo",
+          "enabled": true
+        },
+        "receptor": {
+          "nombre": "receptor_nombre",
+          "tipo_identificacion": "tipo_ident_receptor",
+          "identificacion": "receptor_identif",
+          "direccion": "receptor_direccion",
+          "telefono": "receptor_telefono",
+          "enabled": true
+        },
+        "encabezado": {
+          "numeroDocumento": "consecutivo",
+          "claveNumerica": "clave_numerica",
+          "fechaDocumento": "fecha_factura"
+        },
+        "detalle": {
+          "totalLineaImpresa": 26,
+          "numeroLinea": "numeroLinea",
+          "codigo": "codigo",
+          "cantidad": "cantidad",
+          "unidad": "unidad",
+          "detalle": "concepto",
+          "precioUnitario": "precioUnitario",
+          "subTotal": "subTotal",
+          "totalLinea": "totalLinea",
+          "enabled": true
+        },
+        "resumen": {
+          "totalDescuento": "monto_descuento",
+          "subTotal": "monto_subtotal",
+          "totalMercGrav": "monto_mercancia_gravada",
+          "totalMercExon": "monto_mercancia_exonerada",
+          "totalMercExen": "monto_mercancia_exenta",
+          "totalIva": "monto_iva",
+          "total": "monto_total"
+        }
+      }
+    },
+    "usuario_creacion": {},
+    "fecha_creacion": {}
+  }
