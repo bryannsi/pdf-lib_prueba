@@ -10,16 +10,14 @@
           "identificacion": "emisor_identif",
           "direccion": "emisor_direccion",
           "telefono": "emisor_telefono",
-          "correo": "emisor_correo",
-          "enabled": true
+          "correo": "emisor_correo"
         },
         "receptor": {
           "nombre": "receptor_nombre",
           "tipo_identificacion": "tipo_ident_receptor",
           "identificacion": "receptor_identif",
           "direccion": "receptor_direccion",
-          "telefono": "receptor_telefono",
-          "enabled": true
+          "telefono": "receptor_telefono"
         },
         "encabezado": {
           "numeroDocumento": "consecutivo",
@@ -35,8 +33,7 @@
           "detalle": "concepto",
           "precioUnitario": "precioUnitario",
           "subTotal": "subTotal",
-          "totalLinea": "totalLinea",
-          "enabled": true
+          "totalLinea": "totalLinea"
         },
         "resumen": {
           "totalDescuento": "monto_descuento",
