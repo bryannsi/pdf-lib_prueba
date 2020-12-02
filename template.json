@@ -1,51 +1,66 @@
 {
-    "identificador": "1",
-    "nombre": "plantilla_factura_electronica",
-    "descripcion": "Plantilla para la creación del pdf de la factura electrónica",
-    "tipo": "plantilla",
-    "estructura": {
-      "datos": {
-        "emisor": {
-          "nombre": "emisor_nombre",
-          "identificacion": "emisor_identif",
-          "direccion": "emisor_direccion",
-          "telefono": "emisor_telefono",
-          "correo": "emisor_correo"
+  "identificador": "1",
+  "nombre": "plantilla_factura_electronica",
+  "descripcion": "Plantilla para la creación del pdf de la factura electrónica",
+  "tipo": "plantilla",
+  "estructura": {
+    "datos": {
+      "emisor": {
+        "nombre": "emisor_nombre",
+        "identificacion": "emisor_identif",
+        "direccion": "emisor_direccion",
+        "telefono": "emisor_telefono",
+        "correo": "emisor_correo"
+      },
+      "receptor": {
+        "nombre": "receptor_nombre",
+        "tipo_identificacion": "tipo_ident_receptor",
+        "identificacion": "receptor_identif",
+        "direccion": "receptor_direccion",
+        "telefono": "receptor_telefono"
+      },
+      "encabezado": {
+        "numeroDocumento": "consecutivo",
+        "claveNumerica": "clave_numerica",
+        "fechaDocumento": "fecha_factura"
+      },
+      "detalle": [
+        {
+          "detalle_l1_cod": "codigo",
+          "detalle_l1_cant": "cantidad",
+          "detalle_l1_descrip": "detalle",
+          "detalle_l1_total": "total_linea"
         },
-        "receptor": {
-          "nombre": "receptor_nombre",
-          "tipo_identificacion": "tipo_ident_receptor",
-          "identificacion": "receptor_identif",
-          "direccion": "receptor_direccion",
-          "telefono": "receptor_telefono"
+        {
+          "detalle_l2_cod": "codigo",
+          "detalle_l2_cant": "cantidad",
+          "detalle_l2_descrip": "detalle",
+          "detalle_l2_total": "total_linea"
         },
-        "encabezado": {
-          "numeroDocumento": "consecutivo",
-          "claveNumerica": "clave_numerica",
-          "fechaDocumento": "fecha_factura"
+        {
+          "detalle_l3_cod": "codigo",
+          "detalle_l3_cant": "cantidad",
+          "detalle_l3_descrip": "detalle",
+          "detalle_l3_total": "total_linea"
         },
-        "detalle": {
-          "totalLineaImpresa": 26,
-          "numeroLinea": "numeroLinea",
-          "codigo": "codigo",
-          "cantidad": "cantidad",
-          "unidad": "unidad",
-          "detalle": "concepto",
-          "precioUnitario": "precioUnitario",
-          "subTotal": "subTotal",
-          "totalLinea": "totalLinea"
-        },
-        "resumen": {
-          "totalDescuento": "monto_descuento",
-          "subTotal": "monto_subtotal",
-          "totalMercGrav": "monto_mercancia_gravada",
-          "totalMercExon": "monto_mercancia_exonerada",
-          "totalMercExen": "monto_mercancia_exenta",
-          "totalIva": "monto_iva",
-          "total": "monto_total"
+        {
+          "detalle_l4_cod": "codigo",
+          "detalle_l4_cant": "cantidad",
+          "detalle_l4_descrip": "detalle",
+          "detalle_l4_total": "total_linea"
         }
+      ],
+      "resumen": {
+        "totalDescuento": "monto_descuento",
+        "subTotal": "monto_subtotal",
+        "totalMercGrav": "monto_mercancia_gravada",
+        "totalMercExon": "monto_mercancia_exonerada",
+        "totalMercExen": "monto_mercancia_exenta",
+        "totalIva": "monto_iva",
+        "total": "monto_total"
       }
-    },
-    "usuario_creacion": {},
-    "fecha_creacion": {}
-  }
+    }
+  },
+  "usuario_creacion": {},
+  "fecha_creacion": {}
+}

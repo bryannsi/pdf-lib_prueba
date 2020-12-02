@@ -31,7 +31,7 @@ const createPDF = async () => {
   setData(templateConfig.estructura.datos.emisor, form, senderData, fields);
   setData(templateConfig.estructura.datos.receptor, form, receiverData, fields);
   setData(templateConfig.estructura.datos.resumen, form, headerData, fields);
-  // setDetail(templateConfig.estructura.datos.detalle, form, detailData, pdfDoc.getPages());
+  setDetail(templateConfig.estructura.datos.detalle, form, detailData);
 
   flatAcroForm(fields);
   const pdfBytes = await pdfDoc.save();
@@ -57,15 +57,19 @@ const getAcroForm = (form) => {
   const fields = form.getFields();
   const detailFields = [];
   let fieldList = [];
+  let counter = 0;
+  let obj = {};
   fields.forEach((field) => {
     if (field && validTypes.includes(field.constructor.name)) {
-      if (field.getName().toString().startsWith("l1")) {
-        detailFields.push(field);
-      } else {
-        fieldList.push(field);
-      }
+      // if (field.getName().toString().startsWith("detalle")) {
+      //   detailFields.push(field);
+      //   // obj[`l${counter}`].
+      //   counter++;
+      // } else {
+      // }
+      fieldList.push(field);
     }
-    console.log(field.getName());
+    // console.log(field.getName());
   });
   return fieldList;
 };
@@ -81,35 +85,20 @@ const setData = (struct, form, data, fields) => {
   }
 };
 
-const setDetail = (struct, form, data, pages) => {
-  let x = 28;
-  let y = 470;
-  for (const value of data) {
-    console.log(value);
-    pages[0].drawText(value.codigo.toString(), { x: x + 20, y: y, size: 9 });
-    // pages[0].drawText(value.cantidad.toString(), { x : x+100, y: y, size: 9 });
-    // pages[0].drawText(value.detalle.toString(), { x: x, y: y+450, size: 9 });
-    // pages[0].drawText(value.precio_unitario.toString(), { x: x+1500, y: y, size: 9 });
-    // // pages[0].drawText("descuento", { x: x, y: y, size: 9 });
-    // pages[0].drawText(value.sub_total.toString(), { x: x, y: y, size: 9 });
-    // // pages[0].drawText("impuesto", { x: x, y: y, size: 9 });
-    // pages[0].drawText(value.sub_total.toString(), { x: x, y: y, size: 9 });
+const setDetail = (struct, form, data) => {
+  for (let rowNumber = 0; rowNumber < data.length; rowNumber++) {
+    const element = struct[rowNumber];
+    for (const key in element) {
+      if (element.hasOwnProperty(key)) {
+        const propertyName = element[key];
+        const field = form.getTextField(key);
+        const row = data[rowNumber];
+        const value = row[propertyName] || "";
+        field.setText(value.toString());
+        console.log(`Linea: ${rowNumber + 1} ${propertyName} ${value}`);
+      }
+    }
   }
-  // for (const key in struct) {
-  //   if (struct.hasOwnProperty(key)) {
-  //     const element = struct[key];
-  //     let field = form.getTextField(element);
-  //     let value = data[element] || "";
-  //     field.setText(value.toString());
-  //   }
-  // }
-  // pages[0].drawText("You can modify PDFs too!");
-  // const field = form.getTextField("cod_p1");
-  // const widgets = field.acroField.getWidgets();
-  // widgets.forEach((w) => {
-  //   const rect = w.getRectangle();
-  //   console.log(rect);
-  // });
 };
 
 exports.createPDF = createPDF;
