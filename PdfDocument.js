@@ -4,15 +4,15 @@ const templateConfig = require("./template.json");
 
 const fs = require("fs");
 const path = require("path");
-const file = "pdfeditable.pdf";
+const file = templateConfig.nombre_archivo;
 
-const createPDF = async () => {
+const createPDF = async (id) => {
   const filePath = path.normalize(path.join(__dirname, file));
   const formPdfBytes = fs.readFileSync(filePath);
   const pdfDoc = await PDFDocument.load(formPdfBytes);
   const form = pdfDoc.getForm();
 
-  let [detailData, headerData] = await Promise.all([pdfData.getDetail(5), pdfData.getHeader(5)]);
+  let [detailData, headerData] = await Promise.all([pdfData.getDetail(id), pdfData.getHeader(id)]);
 
   const receiverId = headerData.idreceptor;
   const senderId = headerData.idemisor;
@@ -27,10 +27,10 @@ const createPDF = async () => {
   }
   const fields = getAcroForm(form);
 
-  setData(templateConfig.estructura.datos.encabezado, form, headerData, fields);
-  setData(templateConfig.estructura.datos.emisor, form, senderData, fields);
-  setData(templateConfig.estructura.datos.receptor, form, receiverData, fields);
-  setData(templateConfig.estructura.datos.resumen, form, headerData, fields);
+  setData(templateConfig.estructura.datos.encabezado, form, headerData);
+  setData(templateConfig.estructura.datos.emisor, form, senderData);
+  setData(templateConfig.estructura.datos.receptor, form, receiverData);
+  setData(templateConfig.estructura.datos.resumen, form, headerData);
   setDetail(templateConfig.estructura.datos.detalle, form, detailData);
 
   flatAcroForm(fields);
@@ -55,26 +55,16 @@ const writeFile = (pdfBytes, name) => {
 const getAcroForm = (form) => {
   const validTypes = ["PDFTextField"];
   const fields = form.getFields();
-  const detailFields = [];
   let fieldList = [];
-  let counter = 0;
-  let obj = {};
   fields.forEach((field) => {
     if (field && validTypes.includes(field.constructor.name)) {
-      // if (field.getName().toString().startsWith("detalle")) {
-      //   detailFields.push(field);
-      //   // obj[`l${counter}`].
-      //   counter++;
-      // } else {
-      // }
       fieldList.push(field);
     }
-    // console.log(field.getName());
   });
   return fieldList;
 };
 
-const setData = (struct, form, data, fields) => {
+const setData = (struct, form, data) => {
   for (const key in struct) {
     if (struct.hasOwnProperty(key)) {
       const element = struct[key];
@@ -94,8 +84,7 @@ const setDetail = (struct, form, data) => {
         const field = form.getTextField(key);
         const row = data[rowNumber];
         const value = row[propertyName] || "";
-        field.setText(value.toString());
-        console.log(`Linea: ${rowNumber + 1} ${propertyName} ${value}`);
+        field.setText(value.toString().trim());
       }
     }
   }

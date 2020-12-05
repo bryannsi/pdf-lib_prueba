@@ -1,6 +1,7 @@
 {
   "identificador": "1",
   "nombre": "plantilla_factura_electronica",
+  "nombre_archivo":"pdfeditable.pdf",
   "descripcion": "Plantilla para la creación del pdf de la factura electrónica",
   "tipo": "plantilla",
   "estructura": {
