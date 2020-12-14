@@ -15,7 +15,6 @@
       },
       "receptor": {
         "nombre": "receptor_nombre",
-        "tipo_identificacion": "tipo_ident_receptor",
         "identificacion": "receptor_identif",
         "direccion": "receptor_direccion",
         "telefono": "receptor_telefono"
