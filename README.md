@@ -11,4 +11,7 @@
 
 In the root of the folder the pdf file is generated, which is created corrupt, but it is displayed correctly in the browser.
 
-http://localhost:3000/
+http://localhost:3000/api/create/receipt/:id
+
+Ejemplo 
+http://localhost:3000/api/create/receipt/:5
