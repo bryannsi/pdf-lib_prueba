@@ -19,6 +19,7 @@ app.get("/api/create/receipt/:id", async (req, res) => {
   } catch (error) {
     res.contentType("json");
     res.statusCode = 500;
+    console.log(error.message);
     res.json(error.message);
   }
 });

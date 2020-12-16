@@ -15,7 +15,7 @@ const getReceiver = (idReceptor) => {
 
 const getHeader = (idFactura) => {
   return pool.one(
-    "SELECT f.consecutivo, f.clavenumerica clave_numerica, f.tipo_comprobante, to_char(f.fechaemision, 'DD-MM-YYYY HH24:MI:SS') fecha_factura, f.totaldescuentos monto_descuento, f.subtotal monto_subtotal, f.totalmercanciasgravadas monto_mercancia_gravada, f.totalmercanciaexonerada monto_mercancia_exonerada, f.totalmercanciasexentas monto_mercancia_exenta, f.totalimpuesto monto_iva, f.totalcomprobante monto_total, f.idreceptor, f.idemisor FROM factura f WHERE f.idfactura = $1",
+    "SELECT f.consecutivo, f.clavenumerica clave_numerica, f.tipo_comprobante, to_char(f.fechaemision, 'DD-MM-YYYY HH24:MI:SS') fecha_factura, TO_CHAR(f.totaldescuentos, '999,999.99') monto_descuento, TO_CHAR(f.subtotal, '999,999.99') monto_subtotal, TO_CHAR(f.totalmercanciasgravadas, '999,999.99') monto_mercancia_gravada, TO_CHAR(f.totalmercanciaexonerada, '999,999.99') monto_mercancia_exonerada, TO_CHAR(f.totalmercanciasexentas, '999,999.99') monto_mercancia_exenta, TO_CHAR(f.totalimpuesto, '999,999.99') monto_iva, TO_CHAR(f.totalcomprobante, '999,999.99') monto_total, f.idreceptor, f.idemisor FROM factura f WHERE f.idfactura = $1",
     idFactura
   );
 };
